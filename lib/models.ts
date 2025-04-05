@@ -98,7 +98,7 @@ export async function getPrincipal(): Promise<Principal> {
     const defaultPrincipal: Principal = {
       name: "Dr. Rajesh Sharma, M.Pharm, Ph.D.",
       message:
-        "Welcome to Deshmukh College Of Pharmacy. Our institution is committed to excellence in pharmaceutical education. We strive to provide our students with the knowledge, skills, and values necessary to excel in the field of pharmacy.",
+        "Welcome to Maharashtra College of Pharmacy. Our institution is committed to excellence in pharmaceutical education. We strive to provide our students with the knowledge, skills, and values necessary to excel in the field of pharmacy.",
       imageId: "",
     }
 
@@ -264,28 +264,6 @@ export async function deleteImage(id: string): Promise<void> {
   await gridFS.delete(new ObjectId(id))
 }
 
-// Add College Building Image functions
-export async function getCollegeBuildingImage(): Promise<{ imageId?: string } | null> {
-  const db = await getDb();
-  let record = await db.collection("collegeBuilding").findOne({});
-  if (!record) {
-    const defaultRecord = { imageId: "" };
-    await db.collection("collegeBuilding").insertOne(defaultRecord);
-    return defaultRecord;
-  }
-  return record;
-}
-
-export async function updateCollegeBuildingImage(imageId: string): Promise<void> {
-  const db = await getDb();
-  const record = await db.collection("collegeBuilding").findOne({});
-  if (record) {
-    await db.collection("collegeBuilding").updateOne({ _id: record._id }, { $set: { imageId } });
-  } else {
-    await db.collection("collegeBuilding").insertOne({ imageId });
-  }
-}
-
 // Initialize database with default data if needed
 export async function initializeDatabase() {
   const db = await getDb()
@@ -296,7 +274,7 @@ export async function initializeDatabase() {
     await db.collection("principal").insertOne({
       name: "Dr. Rajesh Sharma, M.Pharm, Ph.D.",
       message:
-        "Welcome to Deshmukh College Of Pharmacy. Our institution is committed to excellence in pharmaceutical education. We strive to provide our students with the knowledge, skills, and values necessary to excel in the field of pharmacy.",
+        "Welcome to Maharashtra College of Pharmacy. Our institution is committed to excellence in pharmaceutical education. We strive to provide our students with the knowledge, skills, and values necessary to excel in the field of pharmacy.",
       imageId: "",
     })
   }
@@ -373,12 +351,6 @@ export async function initializeDatabase() {
         time: "10:00 AM - 1:00 PM",
       },
     ])
-  }
-
-  // Initialize college building image record if absent
-  const buildingCount = await db.collection("collegeBuilding").countDocuments();
-  if (buildingCount === 0) {
-    await db.collection("collegeBuilding").insertOne({ imageId: "" });
   }
 }
 

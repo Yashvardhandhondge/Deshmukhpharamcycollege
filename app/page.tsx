@@ -3,13 +3,12 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, BookOpen, Calendar, Users, MapPin } from "lucide-react"
-import { getPrincipal, getCollegeBuildingImage } from "@/lib/models"
+import { getPrincipal } from "@/lib/models"
 import { initializeDatabase } from "@/lib/models"
 
 export default async function Home() {
   await initializeDatabase()
   const principal = await getPrincipal()
-  const buildingImage = await getCollegeBuildingImage()
 
   return (
     <div>
@@ -19,7 +18,7 @@ export default async function Home() {
           <div className="grid items-center gap-8 md:grid-cols-2">
             <div className="text-center md:text-left">
               <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
-                Deshmukh College Of Pharmacy (D.Pharm)
+                Maharashtra College of Pharmacy (D.Pharm)
               </h1>
               <p className="mt-4 text-lg text-slate-300">Approved by PCI, Affiliated to MSBTE</p>
               <div className="mt-8 flex justify-center gap-4 md:justify-start">
@@ -34,7 +33,7 @@ export default async function Home() {
             <div className="flex justify-center">
               <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white/20 md:h-80 md:w-80">
                 <Image
-                  src={ buildingImage?.imageId ? `/api/images/${buildingImage.imageId}` : "/placeholder.svg?height=320&width=320" }
+                  src="/placeholder.svg?height=320&width=320"
                   alt="College Building"
                   fill
                   className="object-cover"

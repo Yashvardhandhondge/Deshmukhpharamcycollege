@@ -17,7 +17,6 @@ const AdminPrincipal = dynamic(() => import("@/components/admin/admin-principal"
 const AdminFaculty = dynamic(() => import("@/components/admin/admin-faculty"))
 const AdminExams = dynamic(() => import("@/components/admin/admin-exams"))
 const AdminGallery = dynamic(() => import("@/components/admin/admin-gallery"))
-const AdminBuilding = dynamic(() => import("@/components/admin/admin-building")) // New
 
 export default function AdminPage() {
   const router = useRouter()
@@ -143,12 +142,11 @@ export default function AdminPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <Tabs defaultValue="principal">
-            <TabsList className="grid w-full grid-cols-5"> {/* update grid-cols number */}
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="principal">Principal</TabsTrigger>
               <TabsTrigger value="faculty">Faculty</TabsTrigger>
               <TabsTrigger value="exams">Examinations</TabsTrigger>
               <TabsTrigger value="gallery">Gallery</TabsTrigger>
-              <TabsTrigger value="building">Building</TabsTrigger> {/* New */}
             </TabsList>
 
             <TabsContent value="principal">
@@ -165,10 +163,6 @@ export default function AdminPage() {
 
             <TabsContent value="gallery">
               <AdminGallery />
-            </TabsContent>
-
-            <TabsContent value="building">
-              <AdminBuilding />
             </TabsContent>
           </Tabs>
         </div>
